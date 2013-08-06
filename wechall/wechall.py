@@ -3,10 +3,9 @@
 import requests
 
 baseurl = 'http://www.wechall.net/wechall.php?username=!sites '
-challs = []
-challdic = {}
 
 def getall(username):
+    challs = []
     req = requests.get(baseurl+username)
     resp = req.content.split(' ')
     index = int(resp.index('primary:'))+1
@@ -15,9 +14,10 @@ def getall(username):
         challs.append(allchalls[i][:-1])
     return challs
 
-def challper(self):
-    for i in challs:
+def challper(username):
+    challdict = {}
+    for i in getall(username):
         perc = i.split('(')[1].split(')')[0]
         name = i.split('(')[0]
-        challdic[name] = perc
-    return challdic
+        challdict[name] = perc
+    return challdict
