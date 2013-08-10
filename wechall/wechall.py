@@ -6,6 +6,7 @@ import json
 
 baseurl = 'http://www.wechall.net/wechall.php?username=!sites '
 
+
 def __getall(username):
     challs = []
     req = requests.get(baseurl+username)
@@ -16,6 +17,7 @@ def __getall(username):
         challs.append(allchalls[i][:-1])
     return challs
 
+
 def challper(username):
     challdict = {}
     challnames = os.path.join(os.path.dirname(__file__), 'challnames.json')
@@ -25,7 +27,5 @@ def challper(username):
         perc = i.split('(')[1].split(')')[0]
         sname = i.split('(')[0]
         name = longchall[sname]
-        challdict[sname] = { 'name' : name, 'percentage' : perc }
+        challdict[sname] = {'name': name, 'percentage': perc}
     return challdict
-
-
