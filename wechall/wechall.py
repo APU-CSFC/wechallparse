@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+import os
 import requests
+import json
 
 baseurl = 'http://www.wechall.net/wechall.php?username=!sites '
 
-def getall(username):
+def __getall(username):
     challs = []
     req = requests.get(baseurl+username)
     resp = req.content.split(' ')
@@ -16,8 +18,14 @@ def getall(username):
 
 def challper(username):
     challdict = {}
-    for i in getall(username):
+    challnames = os.path.join(os.path.dirname(__file__), 'challnames.json')
+    f = open(challnames, 'rb').read()
+    longchall = json.loads(f)
+    for i in __getall(username):
         perc = i.split('(')[1].split(')')[0]
-        name = i.split('(')[0]
-        challdict[name] = perc
+        sname = i.split('(')[0]
+        name = longchall[sname]
+        challdict[sname] = { 'name' : name, 'percentage' : perc }
     return challdict
+
+
