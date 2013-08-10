@@ -3,3 +3,4 @@ wechall/*.py[cod]
 test.py
 build/
 wechall.egg-info/
+dist/
