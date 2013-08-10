@@ -8,7 +8,7 @@ except ImportError:
 setup(
     name='wechall',
     packages=['wechall'],
-    version='0.1',
+    version='0.2',
     description='wechall score parser',
     long_description=open('README.rst').read() + '\n',
     author='Maverick JS',
