@@ -1,4 +1,3 @@
 *.py[cod]
 wechall/*.py[cod]
 test.py
-challnames.json
