@@ -14,18 +14,13 @@ or::
 
 Then use the package by doing::
 
-    import wechall
-    
-    challs = wechall.challper('mavjs')
+    In [1]: import wechall
 
-    print type(challs)
+    In [2]: wechall.userstat('mavjs')
+    Out[2]: 'mavjs is ranked 1605 from 8333, linked to 3 sites with an average of 12.91% solved. mavjs has a totalscore of 3070. mavjs needs 2 points to rankup.'
 
-    >>> <type 'dict'>
+    In [3]: wechall.userstat('mavjs', True)
+    Out[3]: 'mavjs plays 3 sites, primary: OTW(29.08%), HTS(6.72%), WC(2.92%).'
 
-    print challs.keys()
-
-    >>> ['WC', 'HTS', 'OTW']
-
-    challs['WC']
-
-    >>> {'percentage': '3.12%', 'name': u'WeChall'}
+    In [4]: wechall.userstat('mavjs', True, 'OTW')
+    Out[4]: "mavjs completed %29.08 on OverTheWire.org (41 of 141 points). On http://www.overthewire.org/wargames/ , mavjs's rank is unknown. Linked to WeChall he claims rank 96, scoring 2910 points."
