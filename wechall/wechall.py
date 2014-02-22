@@ -24,8 +24,8 @@ def activity(datestamp=None, username=None, sitename=None, limit=None,
     """"
     Poll the latest activity in a machine readable format.
     """
+    payload = basepayload
     if (datestamp,username,sitename,limit,masterkey) is None:
-        payload = basepayload
         payload['me'] = 'API_History'
     if not datestamp is None:
         payload['datestamp'] = datestamp
