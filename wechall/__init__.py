@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-from .wechall import challper
+from .wechall import *
