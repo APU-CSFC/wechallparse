@@ -5,9 +5,9 @@ This script provides the main interface to the WeChall API.
 
 import requests
 
-userurl = 'http://www.wechall.net/wechall.php'
-baseurl = 'http://www.wechall.net/index.php'
-basepayload = {'mo': 'WeChall', 'me': '', 'no_session': '1'}
+USERURL = 'http://www.wechall.net/wechall.php'
+BASEURL = 'http://www.wechall.net/index.php'
+BASE_PAYLOAD = {'mo': 'WeChall', 'me': '', 'no_session': '1'}
 
 
 def userstat(username, sites=False, sitealias=None):
@@ -23,7 +23,7 @@ def userstat(username, sites=False, sitealias=None):
     else:
         data = '!'+sitealias+' '+username
         payload = {'username': data}
-    req = requests.get(userurl, params=payload)
+    req = requests.get(USERURL, params=payload)
     resp = req.content
     return resp
 
@@ -41,7 +41,7 @@ def activity(datestamp=None, username=None, sitename=None, limit=None,
     - password [No Api Override for user]: Private API password, when a single
       user is queried.
     """
-    payload = basepayload
+    payload = BASE_PAYLOAD
     payload['me'] = 'API_History'
     if datestamp is not None:
         payload['datestamp'] = datestamp
@@ -53,7 +53,7 @@ def activity(datestamp=None, username=None, sitename=None, limit=None,
         payload['limit'] = limit
     if masterkey is not None:
         payload['masterkey'] = masterkey
-    req = requests.get(baseurl, params=payload)
+    req = requests.get(BASEURL, params=payload)
     resp = req.content
     return resp
 
@@ -65,14 +65,14 @@ def userapi(username, apikey=None):
     newlinks-counter, unreadpm-counter and unreadthreads-counter.
     The output format is multiple rows in key:value pairs.
     """
-    payload = basepayload
+    payload = BASE_PAYLOAD
     payload['me'] = 'API_User'
     if apikey is None:
         payload['username'] = username
     else:
         payload['username'] = username
         payload['apikey'] = apikey
-    req = requests.get(baseurl, params=payload)
+    req = requests.get(BASEURL, params=payload)
     resp = req.content
     return resp
 
@@ -82,10 +82,10 @@ def siteapi(sitename=None):
     Query the site database with this API to retrieve data in a machine
     readable format.
     """
-    payload = basepayload
+    payload = BASE_PAYLOAD
     payload['me'] = 'API_Site'
     if sitename is not None:
         payload['sitename'] = sitename
-    req = requests.get(baseurl, params=payload)
+    req = requests.get(BASEURL, params=payload)
     resp = req.content
     return resp
